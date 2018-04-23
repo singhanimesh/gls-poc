@@ -1,0 +1,174 @@
+{
+
+	"subData": [{
+			"id": "2014",
+			"parent": "",
+			"name": "100M USD",
+			"color": "#fff"
+		}, {
+			"id": "2014-1",
+			"parent": "2014",
+			"name": "25M USD",
+			"value": 31000
+
+		}, {
+			"id": "2014-2",
+			"parent": "2014",
+			"name": "20M USD",
+			"value": 32000
+		}, {
+			"id": "2014-3",
+			"parent": "2014",
+			"name": "10M USD"
+		}, {
+			"id": "2014-4",
+			"parent": "2014",
+			"name": "5M USD",
+			"value": 11000
+		}, {
+			"id": "2014-5",
+			"parent": "2014",
+			"name": "23M USD",
+			"value": 5000
+		}, {
+			"id": "2014-6",
+			"parent": "2014",
+			"name": "15M USD",
+			"value": 18000
+		}, {
+			"id": "2014-7",
+			"parent": "2014-1",
+			"name": "Jul",
+			"value": 12000
+		}, {
+			"id": "2014-8",
+			"parent": "2014-1",
+			"name": "Aug",
+			"value": 11000
+		}, {
+			"id": "2014-9",
+			"parent": "2014-1",
+			"name": "Seo",
+			"value": 11000
+		}
+
+	],
+
+	"chart": {
+	},
+	"title": {
+		"text": "World population 2017"
+	},
+	"subtitle": {
+		"text": "Source <href=\"https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)\">Wikipedia</a>"
+	},
+	"plotOptions": {
+		"sunburst": {
+			"distance": -50,
+			"borderWidth": 0,
+			"dataLabels": {
+				"enabled": true,
+				"distance": -50,
+				"style": {
+					"fontWeight": "bold",
+					"color": "white",
+					"textShadow": "0px 1px 2px black"
+				}
+			}
+
+		}
+	},
+	
+	"series": [{
+		"type": "sunburst",
+
+		"data": [{
+				"id": "2014",
+				"parent": "",
+				"name": "100M USD"
+				
+			}, {
+				"id": "2014-1",
+				"parent": "2014",
+				"name": "25M USD",
+				"value": 31000,
+				"drilldown": "2014-A"
+			}, {
+				"id": "2014-2",
+				"parent": "2014",
+				"name": "20M USD",
+				"value": 32000,
+				"drilldown": "2014-B"
+			}, {
+				"id": "2014-3",
+				"parent": "2014",
+				"name": "10M USD"
+			}, {
+				"id": "2014-4",
+				"parent": "2014",
+				"name": "5M USD",
+				"value": 11000
+			}, {
+				"id": "2014-5",
+				"parent": "2014",
+				"name": "23M USD",
+				"value": 5000
+			}, {
+				"id": "2014-6",
+				"parent": "2014",
+				"name": "15M USD",
+				"value": 18000
+			}
+		],
+		"allowDrillToNode": true,
+		"cursor": "pointer",
+		"dataLabels": {
+			"filter": {
+				"property": "innerArcLength",
+				"operator": ">",
+				"value": 16
+			}
+		},
+		"levels": [{
+			"level": 1,
+			"levelIsConstant": true,
+			"colorVariation": {
+                "key": "brightness",
+                "to": -0.5
+            },
+
+			"dataLabels": {
+				"filter": {
+					"property": "outerArcLength",
+					"operator": ">",
+					"value": 64
+				}
+			}
+		}, {
+			"level": 2,
+			"rotation": 2,
+			"colorByPoint": true,
+			"levelIsConstant": false,
+			"colorVariation": {
+                "key": "brightness",
+                "to": -0.5
+            }
+			
+		}, {
+			"level": 3,
+			"levelIsConstant": false,
+			"colorVariation": {
+				"key": "brightness",
+				"to": -0.5
+			}
+		}]
+	}],
+	"drilldown": {
+		"series": []
+	},
+
+	"tooltip": {
+		"headerFormat": "",
+		"pointFormat": "The population of <b>{point.name}</b> is <b>{point.value}</b>"
+	}
+}

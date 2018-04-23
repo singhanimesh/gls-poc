@@ -1,0 +1,71 @@
+ {
+    "chart": {
+      "type": "pie"
+    },
+    "title": {
+      "text": "Browser market shares. January, 2015 to May, 2015"
+      
+    },
+    "subtitle": {
+      "text": "Click the slices to view versions. Source: netmarketshare.com."
+    },
+    "tooltip": {
+      "headerFormat": "<span style=\"font-size:11px\">{series.name}</span><br>",
+      "pointFormat": "<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>"
+    },
+    "plotOptions": {
+      "pie": {
+        "dataLabels": {
+          "enabled": true,
+          "distance": -50,
+          "style": {
+            "fontWeight": "bold",
+            "color": "white",
+            "textShadow": "0px 1px 2px black"
+          }
+        } 
+      }
+   },
+    "series": [
+      {
+        "name": "Brands",
+        "type": "pie",
+        "innerSize":"50%",
+        "colorByPoint": true,
+        "data": [
+          {
+            "name": "IE",
+            "y": 56.33,
+            "drilldown": "IE"
+          },
+          {
+            "name": "Chrome",
+            "y": 24.03,
+            "drilldown": "Chrome"
+          },
+          {
+            "name": "Firefox",
+            "y": 10.38,
+            "drilldown": "Firefox"
+          },
+          {
+            "name": "Safari",
+            "y": 4.77,
+            "drilldown": "Safari"
+          },
+          {
+            "name": "Opera",
+            "y": 0.91,
+            "drilldown": "Opera"
+          },
+          {
+            "name": "Proprietary or Undetectable",
+            "y": 0.2,
+            "drilldown": null
+          }
+        ]
+      }
+    ]
+   
+    
+  }
