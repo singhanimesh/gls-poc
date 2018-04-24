@@ -40,7 +40,7 @@ Once your server is started will see http://localhost:8080 running in your brows
 
 * [Highcharts](https://www.highcharts.com/docs) - Used for Chart creation
 * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/) -used for styling
-* [React AG Grid](https://rometools.github.io/rome/) - Used for grid 
+* [React AG Grid](https://www.ag-grid.com/best-react-data-grid/) - Used for grid 
 
 
 ## Authors
