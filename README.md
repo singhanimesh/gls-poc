@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 In order to run this project you should have node and npm/yarn installed in your maching
 
-check npm and yarn 
+check npm installed please run following command 
 
 ```
 $ npm -v
