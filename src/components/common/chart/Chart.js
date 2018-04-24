@@ -1,3 +1,4 @@
+import './chart.scss';
 import React from 'react';
 import Highcharts from 'highcharts';
 
