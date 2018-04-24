@@ -18,13 +18,13 @@ $ npm -v
 
 ### Setup Project in your system
 
-To run your project you need to follow following instructions 
+To setup this project in your sustem please follow the following instructions 
 
 ```
 $ npm install
 ```
 
-once installations id done please run following commands in your terminal. it will run api server for data fetch 
+once installations is done please run following commands in your terminal. it will start Api server at http://localhost:3000, where you have your data Apis  
 
 ```
 $ npm run server
@@ -34,7 +34,7 @@ open new terminal and run
 $ npm start
 ```
 
-Once you start the project you will see http://localhost:8080 running in your browser with donut chart example. you can use menu bar to got to other charts as well. 
+Once your server is started will see http://localhost:8080 running in your browser with donut chart example. you can use menu bar to got to other charts as well. 
 
 ## Built With
 
