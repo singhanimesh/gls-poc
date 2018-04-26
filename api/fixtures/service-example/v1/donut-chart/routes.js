@@ -26,13 +26,37 @@ function process(params){
 	const filteredData =   fixture.filter(item => item.parent === params.id);
 
 	const parentNode =   fixture.find(item => item.id === params.id);
+
+	const superParentNode =   fixture.find(item => item.id === parentNode.parent);
          
-	if(parentNode){
-        	parentNode.parent = "";
-        	// parentNode.color = "#FAEBD7";
+
+
+	if(superParentNode){
+        	superParentNode.parent = "";
+        	 parentNode.color = "#fffff";
 	}   
-	const data = {id: params.drilldown, type: "sunburst",  connectEnds: false};
+
+	if(parentNode){
+        	parentNode.parent = superParentNode.id;
+        	// parentNode.color = "#FAEBD7";
+	} 
+
+	const data = {id: params.drilldown, pointPadding: 0.3, pointPlacement: -0.2, type: "sunburst",  connectEnds: false};
+	const parentNode1 = Object.assign({}, parentNode);
+
+	parentNode1.id = "2015";
+	parentNode1.value = 75000000;
+	parentNode1.clone = true;
+
+	
+	filteredData.unshift(parentNode1);
 	filteredData.unshift(parentNode);
+	
+
+	filteredData.unshift(superParentNode);
+
+
+
 	data.data = filteredData; 
 	return data; 
 }

@@ -23,7 +23,6 @@ export default class DonutChart extends React.Component  {
 			} = this.chartRef.current;
 			chart.hideLoading();
 			const {data, point} = subConfig;
-			console.log(data);
 			chart.addSeriesAsDrilldown(point, data);
 		}
 	}

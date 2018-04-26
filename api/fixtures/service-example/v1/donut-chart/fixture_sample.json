@@ -1275,3 +1275,21 @@
 	"name": "Tokelau",
 	"value": 1300
 }]
+
+
+const data = [
+        
+          { "id": "2014-1", "parent": "2014", "name": "25M USD", "value": 31000, "pointPadding":  0.3},
+              
+          { "id": "2014-2", "parent": "2014-1", "name": " ", "value": 25000, "pointPadding":  0.3},
+
+          { "id": "2014-3", "parent": "2014-1", "name": " " ,"value": 75000, "dummy" : true , "color": "#F6F6F6" },
+          
+          { "id": "2014-7", "parent": "2014-2", "name": "Jul", "value": 12000},
+          { "id": "2014-8", "parent": "2014-2", "name": "Aug", "value": 11000},
+          { "id": "2014-9", "parent": "2014-2", "name": "Seo", "value": 11000},
+          { "id": "2014-10", "parent": "2014-2", "name": " ", "value":60000 , color: "#fff" }
+        
+];
+
+module.exports =  data;

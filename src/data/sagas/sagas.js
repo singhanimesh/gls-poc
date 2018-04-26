@@ -1,6 +1,8 @@
 import {takeEvery, takeLatest , call, put} from 'redux-saga/effects';
 import { api } from 'config';
 
+import mapColorWithData from '../../utils/dataBuilder';
+
 import {
 	REQUEST_CHART_CONFIG,
 	REQUEST_SUB_CHART_CONFIG,
@@ -21,14 +23,14 @@ export function* requestChartConfigSaga() {
 }
 
 function* callRequestSubChartConfig(action) {
-	const {id, drilldown} = action.payload;
+	const {id, drilldown, color} = action.payload;
 	const response = yield call(fetch, `${donutChart}/data/${id}/${drilldown}`);
-	const data = yield call([response, response.json])
+	let data = yield call([response, response.json]);
+	data = mapColorWithData(data, color);
 	yield put(receiveSubChartConfig({data, point: action.payload}));
 }
 
 export function* requestSubChartConfigSaga() {
 	yield takeLatest(REQUEST_SUB_CHART_CONFIG, callRequestSubChartConfig);
 }
-
 

@@ -1,4 +1,3 @@
-import './chart.scss';
 import React from 'react';
 import Highcharts from 'highcharts';
 
@@ -12,6 +11,12 @@ export default class Chart extends React.Component {
 				module(Highcharts);
 			});
 		}
+
+
+		Highcharts.setOptions({
+    		colors: ["#ffffff", "#38B049", '#A9D574', '#FF7F27', '#C1C1FF', '#D7006B', '#6200C4', '#A346FF', '#A98301', '#FF5900',"#CC39E6"]
+	    });
+
 		this.chart = new Highcharts[this.props.type || "Chart"](
 			this.props.container, 
 			this.props.options || {}

@@ -1,21 +1,9 @@
 import React from 'react';
+import _ from 'lodash';
 import Navigation from '../common/Navigation';
 import Header from '../common/Header';
-
-/* export default class HomePage extends React.Component {
-	
-	render() {
-		return (
-			<div className="container">
-				<Header/>
-				<Navigation />
-				{this.props.children}
-			</div>
-		);
-	}
-}
-*/
-
+import ColorScheme  from 'color-scheme';
+ 
 const HomePage = ({children}) => (
 	<div className="container">
 		<Header/>
