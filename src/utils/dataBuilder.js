@@ -116,7 +116,6 @@ function generateColors(startColor, endColor, count, type) {
 	}
 
 	return colors;
-
 }
 
 
@@ -158,7 +157,7 @@ const mapColorWithData = function (data , parentColor) {
 	const generatedColors = generateColors(parentColor, endColor, items.length);
 
 	data.data = items.map((item, index , array)=> {
-		item.color = item.dummy ? '#ffffff' :  generatedColors[index];
+		item.color = item.dummy || item.border ? '#ffffff' :  generatedColors[index];
 		item.color = item.clone ? '#F6F6F6' : item.color;
 		return item; 
 	});

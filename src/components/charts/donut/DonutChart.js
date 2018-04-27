@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import sunburst from 'highcharts/modules/sunburst';
 import drilldown from 'highcharts/modules/drilldown';
+import solidgauge from 'highcharts/modules/solid-gauge';
 import Chart from '../../common/chart/Chart'
 import Spinner from '../../common/spinner/Spinner';
  
@@ -24,6 +25,7 @@ export default class DonutChart extends React.Component  {
 			chart.hideLoading();
 			const {data, point} = subConfig;
 			chart.addSeriesAsDrilldown(point, data);
+			chart.redraw();
 		}
 	}
  
@@ -54,12 +56,12 @@ export default class DonutChart extends React.Component  {
 		};
 		if(config && config.chart) {
 			config.chart.events =  {drilldown: onDrilldown};
-			console.log('config' , config);
+			
 		}
 		
 		
 		const options = {
-			modules: [sunburst,drilldown],
+			modules: [sunburst,drilldown, solidgauge],
 			container: "donut",
 			options: config
 		};

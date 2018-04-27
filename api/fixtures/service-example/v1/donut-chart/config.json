@@ -1,59 +1,5 @@
 {
 
-	"subData": [{
-			"id": "2014",
-			"parent": "",
-			"name": "100M USD",
-			"color": "#fff"
-		}, {
-			"id": "2014-1",
-			"parent": "2014",
-			"name": "25M USD",
-			"value": 31000
-
-		}, {
-			"id": "2014-2",
-			"parent": "2014",
-			"name": "20M USD",
-			"value": 32000
-		}, {
-			"id": "2014-3",
-			"parent": "2014",
-			"name": "10M USD"
-		}, {
-			"id": "2014-4",
-			"parent": "2014",
-			"name": "5M USD",
-			"value": 11000
-		}, {
-			"id": "2014-5",
-			"parent": "2014",
-			"name": "23M USD",
-			"value": 5000
-		}, {
-			"id": "2014-6",
-			"parent": "2014",
-			"name": "15M USD",
-			"value": 18000
-		}, {
-			"id": "2014-7",
-			"parent": "2014-1",
-			"name": "Jul",
-			"value": 12000
-		}, {
-			"id": "2014-8",
-			"parent": "2014-1",
-			"name": "Aug",
-			"value": 11000
-		}, {
-			"id": "2014-9",
-			"parent": "2014-1",
-			"name": "Seo",
-			"value": 11000
-		}
-
-	],
-
 	"chart": {
 	},
 	"title": {
@@ -64,15 +10,11 @@
 	},
 	"plotOptions": {
 		"sunburst": {
-			"distance": -50,
 			"borderWidth": 0,
 			"dataLabels": {
 				"enabled": true,
-				"distance": -50,
 				"style": {
-					"fontWeight": "bold",
-					"color": "white",
-					"textShadow": "0px 1px 2px black"
+					"fontWeight": "bold"
 				}
 			}
 
@@ -81,7 +23,14 @@
 	
 	"series": [{
 		"type": "sunburst",
-
+		"dataLabels": {
+				"enabled": true,
+				"style": {
+					"fontWeight": "bold",
+					"color": "#fff"
+				}
+			},
+		
 		"data": [{
 				"id": "2014",
 				"parent": "",
@@ -130,21 +79,30 @@
 		"allowDrillToNode": true,
 		"cursor": "pointer",
 		"dataLabels": {
+			"rotation": "parallel",
 			"filter": {
 				"property": "innerArcLength",
 				"operator": ">",
+				
 				"value": 16
 			}
 		},
 		"levels": [{
 			"level": 1,
 			"levelIsConstant": true,
+			"levelSize": {
+                "unit": "percentage",
+                "value": 70
+            },
 			"colorVariation": {
                 "key": "brightness",
                 "to": -0.5
             },
 
 			"dataLabels": {
+				"enabled":true,
+				"rotationMode": "parallel",
+
 				"filter": {
 					"property": "outerArcLength",
 					"operator": ">",
@@ -154,6 +112,9 @@
 		}, {
 			"level": 2,
 			"rotation": 2,
+			"dataLabels": {
+				"enabled":false
+			},
 			"colorByPoint": true,
 			"levelIsConstant": false,
 			"colorVariation": {
@@ -171,11 +132,11 @@
 		}]
 	}],
 	"drilldown": {
-		"series": []
+		"series":[{"type":"sunburst","data":[],"allowDrillToNode":true,"cursor":"pointer","dataLabels":{"format":"{point.name}","filter":{"property":"innerArcLength","operator":">","value":16}},"levels":[{"level":1,"levelIsConstant":false,"levelSize":{"unit":"pixels","value":30}},{"level":2,"borderWidth":10,"colorByPoint":true,"dataLabels":{"rotationMode":"parallel"}},{"level":3,"borderWidth":20,"levelIsConstant":false,"levelSize":{"unit":"weight","value":2}},{"level":4,"levelIsConstant":true,"levelSize":{"unit":"percentage","value":30}}]}]
 	},
 
 	"tooltip": {
 		"headerFormat": "",
-		"pointFormat": "The population of <b>{point.name}</b> is <b>{point.value}</b>"
+		"pointFormat": "node value <b>{point.name}</b> is <b>{point.value}</b>"
 	}
 }

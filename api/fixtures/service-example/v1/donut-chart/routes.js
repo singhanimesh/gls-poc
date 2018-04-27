@@ -22,39 +22,115 @@ module.exports = function (api) {
 }
 
 function process(params){
-	// process the item and return object;
-	const filteredData =   fixture.filter(item => item.parent === params.id);
+	
 
+	const getValue = function (items, parentValue) {
+		
+		let value = 0;
+		items.forEach(item => {
+			value += (item.value ? item.value : 0);
+		});
+
+		return parentValue - value;
+	}; 
+
+	const filteredParent =   fixture.filter(item => item.parent === params.id);
+	
+	
+	const filteredData =   fixture.filter(item => item.parent === filteredParent[0].id);
+	
 	const parentNode =   fixture.find(item => item.id === params.id);
 
 	const superParentNode =   fixture.find(item => item.id === parentNode.parent);
          
 
-
-	if(superParentNode){
+	if(superParentNode) {
         	superParentNode.parent = "";
-        	 parentNode.color = "#fffff";
+        	//parentNode.color = "#fffff";
 	}   
-
 	if(parentNode){
         	parentNode.parent = superParentNode.id;
-        	// parentNode.color = "#FAEBD7";
 	} 
 
-	const data = {id: params.drilldown, pointPadding: 0.3, pointPlacement: -0.2, type: "sunburst",  connectEnds: false};
-	const parentNode1 = Object.assign({}, parentNode);
+	/* fillColor:'rgba(204,0,0,.2)',
+        type:'area',
+        lineWidth:10,
+        threshold:10,
+*/
+	const data = {
+		id: params.drilldown,
+		type: "sunburst",
+		allowDrillToNode: true,
+		cursor: 'pointer',
+		dataLabels: {
+			enabled:true
+		},
+		levels: [{
+			level: 1,
+			dataLabels: {
+				innerSize: -200,
+				enabled: true,
+				rotationMode: 'parallel'
+			},
+			levelSize: {
+				unit: 'weight',
+				value: 5
+			}
+		}, {
+			level: 2,
+			borderWidth:10,
+			levelSize: {
+				unit: 'pixels',
+				value: 25
+			},
+			colorByPoint: true,
+			dataLabels: {
+				enabled: false,
+				rotationMode: 'parallel'
+			}
+		}, {
+			level: 3,
+			borderWidth:10,
+			levelIsConstant: false,
+			dataLabels: {
+				enabled: false,
+				rotationMode: 'parallel'
+			},
+			levelSize: {
+				unit: 'pixels',
+				value: 8
+			}
+		}, {
+			level: 4,
+			borderWidth:10,
+			dataLabels: {
+				enabled: false,
+				rotationMode: 'parallel'
+			},
+			levelIsConstant: false,
+			levelSize: {
+				unit: 'weight',
+				value: 4
+			}
+		}]
 
-	parentNode1.id = "2015";
-	parentNode1.value = 75000000;
-	parentNode1.clone = true;
+	};
 
+
+	 // {id: params.drilldown, type: "sunburst", groupPadding: 10,lineWidth:10,threshold:10,  connectEnds: false};
 	
-	filteredData.unshift(parentNode1);
+
+	const dummyParent = Object.assign({}, parentNode);
+	
+	dummyParent.id = `${parentNode.id  }-dummy`;
+	dummyParent.value = superParentNode.value - parentNode.value;  // getValue(filteredData, parentNode.value);
+	dummyParent.clone = true;
+	dummyParent.name = ' ';
+	
+	filteredData.unshift(filteredParent[0]);
+	filteredData.unshift(dummyParent);
 	filteredData.unshift(parentNode);
-	
-
 	filteredData.unshift(superParentNode);
-
 
 
 	data.data = filteredData; 
