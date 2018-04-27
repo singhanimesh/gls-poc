@@ -32,16 +32,24 @@ export default class DonutChart extends React.Component  {
    
 	render() {
 		const {config, requestSubChartConfig , isFetching} = this.props;
-		console.log(this.props);
+		
 		const onDrilldown = (e) => {
 
-			console.log('I am called' ,this.chartRef );
 			if (!e.seriesOptions) {
-			
 				const {chart} = this.chartRef.current;
 				chart.showLoading('Loading Sub Data ...');
-				requestSubChartConfig(e.point);
-			
+				const len = e.point.index;
+				const points = chart.series[0].points;
+				  let startAngle = 0;
+				  for (let i = 0; i < len; i++){
+				    const p = points[i];
+				    if(p.value !== 100000000){
+				    	startAngle += ((p.value/points[0].value) * 360.0);
+					}
+				  }
+				e.point.startAngle = startAngle;
+				  requestSubChartConfig(e.point);
+
 				/**
                   * Following code can be used for  adding points if required
                   */

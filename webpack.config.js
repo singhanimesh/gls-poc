@@ -71,6 +71,9 @@ module.exports = (env) => ({
 		}),
 
 		env.development ? new webpack.HotModuleReplacementPlugin() : null,
+		new webpack.ProvidePlugin({
+    		Promise: 'es6-promise-promise'// works as expected
+		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.DefinePlugin({

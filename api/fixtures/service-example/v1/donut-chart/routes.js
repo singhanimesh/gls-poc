@@ -11,7 +11,7 @@ module.exports = function (api) {
 			}, 100);
 		});
 
-	api.route('/service-example/v1/donut-chart/data/:id/:drilldown')
+	api.route('/service-example/v1/donut-chart/data/:id/:drilldown/:startAngle')
 		.get((req, res) => {
 			setTimeout(() => {
 				const file = process(req.params);
@@ -23,7 +23,6 @@ module.exports = function (api) {
 
 function process(params){
 	
-
 	const getValue = function (items, parentValue) {
 		
 		let value = 0;
@@ -36,7 +35,6 @@ function process(params){
 
 	const filteredParent =   fixture.filter(item => item.parent === params.id);
 	
-	
 	const filteredData =   fixture.filter(item => item.parent === filteredParent[0].id);
 	
 	const parentNode =   fixture.find(item => item.id === params.id);
@@ -46,21 +44,20 @@ function process(params){
 
 	if(superParentNode) {
         	superParentNode.parent = "";
-        	//parentNode.color = "#fffff";
+        	superParentNode.name = parentNode.name;
+        	
 	}   
+
 	if(parentNode){
         	parentNode.parent = superParentNode.id;
 	} 
 
-	/* fillColor:'rgba(204,0,0,.2)',
-        type:'area',
-        lineWidth:10,
-        threshold:10,
-*/
+	
 	const data = {
 		id: params.drilldown,
 		type: "sunburst",
 		allowDrillToNode: true,
+		startAngle: parseInt(params.startAngle),
 		cursor: 'pointer',
 		dataLabels: {
 			enabled:true
@@ -120,9 +117,8 @@ function process(params){
 	 // {id: params.drilldown, type: "sunburst", groupPadding: 10,lineWidth:10,threshold:10,  connectEnds: false};
 	
 
-	const dummyParent = Object.assign({}, parentNode);
-	
-	dummyParent.id = `${parentNode.id  }-dummy`;
+	const dummyParent = Object.assign({}, parentNode);	
+	dummyParent.id = `${parentNode.id}-dummy`;
 	dummyParent.value = superParentNode.value - parentNode.value;  // getValue(filteredData, parentNode.value);
 	dummyParent.clone = true;
 	dummyParent.name = ' ';
@@ -131,7 +127,6 @@ function process(params){
 	filteredData.unshift(dummyParent);
 	filteredData.unshift(parentNode);
 	filteredData.unshift(superParentNode);
-
 
 	data.data = filteredData; 
 	return data; 
