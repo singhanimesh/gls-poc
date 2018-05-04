@@ -1,26 +1,4 @@
-
-const fixture =  require('./fixture.js');
-const config =  require('./config.json');
-
-module.exports = function (api) {
-	api.route('/service-example/v1/donut-chart/:config')
-		.get((req, res) => {
-			setTimeout(() => {
-				const file = req.params.config === 'config' ? config : fixture;
-				res.json(file);
-			}, 100);
-		});
-
-	api.route('/service-example/v1/donut-chart/data/:id/:drilldown/:startAngle')
-		.get((req, res) => {
-			setTimeout(() => {
-				//const file = process(req.params);
-				res.json(fixture);
-			}, 100);
-		});
-}
-
-function process(params){
+function processData(id, drilldown, startAngle) {
 	
 	const getValue = function (items, parentValue) {
 		
@@ -32,11 +10,11 @@ function process(params){
 		return parentValue - value;
 	}; 
 
-	const filteredParent =   fixture.filter(item => item.parent === params.id);
+	const filteredParent =   fixture.filter(item => item.parent === id);
 	
 	const filteredData =   fixture.filter(item => item.parent === filteredParent[0].id);
 	
-	const parentNode =   fixture.find(item => item.id === params.id);
+	const parentNode =   fixture.find(item => item.id === id);
 
 	const superParentNode =   fixture.find(item => item.id === parentNode.parent);
          
@@ -54,10 +32,10 @@ function process(params){
 
 	
 	const data = {
-		id: params.drilldown,
+		id: drilldown,
 		type: "sunburst",
 		allowDrillToNode: true,
-		startAngle: parseInt(params.startAngle),
+		startAngle: parseInt(startAngle),
 		cursor: 'pointer',
 		dataLabels: {
 			enabled:true
@@ -113,7 +91,6 @@ function process(params){
 		}]
 
 	};
-
 
 	const dummyParent = Object.assign({}, parentNode);	
 	dummyParent.id = `${parentNode.id}-dummy`;

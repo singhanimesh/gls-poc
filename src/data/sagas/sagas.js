@@ -1,6 +1,7 @@
 import {takeEvery, takeLatest , call, put} from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
 import { api } from 'config';
+import { processData } from './helpers/donutChartHelper';
 
 import mapColorWithData from '../../utils/dataBuilder';
 
@@ -28,6 +29,7 @@ function* callRequestSubChartConfig(action) {
 	console.log("payload",startAngle);
 	const response = yield call(fetch, `${donutChart}/data/${id}/${drilldown}/${startAngle}`);
 	let data = yield call([response, response.json]);
+	data = processData(data, id, drilldown, startAngle);
 	data = mapColorWithData(data, color);
 	yield put(receiveSubChartConfig({data, point: action.payload}));
 }

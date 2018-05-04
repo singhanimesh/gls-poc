@@ -4,7 +4,7 @@ const data = [
 
 	{ "id": "2014", "parent": "", "name": "25M USD", "value": 100000000},
     
-	{ "id": "2014-1", "parent": "2014", "name": "25M USD", "value": 25000000, className: "highcharts-c-0"},
+	{ "id": "2014-1", "parent": "2014", "name": "25M USD", "value": 25000000},
 
 	{ "id": "2014-2", "parent": "2014", "name": "20M USD", "value": 20000000},
 	{ "id": "2014-3", "parent": "2014", "name": "10M USD","value": 15000000},
